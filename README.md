@@ -1,4 +1,3 @@
-**Descrição para README do Repositório:**
 
 # Sistema de Pedidos
 
