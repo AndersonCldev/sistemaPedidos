@@ -7,11 +7,6 @@ public class Pedido {
 	private String nomeCompleto;
 	private String cpf;
 	private String nomePedido;
-	private Byte quantidade; 
-	private Double subtotal;
-	private Double desconto;
-	private Double total; 
-	
 	
 	
 	//Métodos get e set nomeCliente
