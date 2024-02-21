@@ -5,7 +5,7 @@ public class Pagamento {
 	private Byte quantidadePedido; 
 	private Double subtotal;
 	private Double desconto;
-	private Double total; 
+	private Double total = subtotal + desconto; 
 	private Double[] valorProduto = {15.99, 9.97, 13.00};
 	
 			
@@ -45,6 +45,8 @@ public class Pagamento {
 		this.total = total;
 	}
 	
+	
+	//Métodos get e set valorProduto
 	public Double[] getValorProduto() {
 		return valorProduto;
 	}
@@ -52,6 +54,9 @@ public class Pagamento {
 	public void setValorProduto( Double[] valorProduto) {
 		this.valorProduto = valorProduto;
 	}
+	
+	
+	
 }
 	
 
