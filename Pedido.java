@@ -7,6 +7,8 @@ public class Pedido {
 	private String nomeCompleto;
 	private String cpf;
 	private String nomePedido;
+	public String nomeBebida;
+	
 	
 	
 	//Métodos get e set nomeCliente
@@ -55,5 +57,13 @@ public class Pedido {
 		this.nomePedido = nomePedido;
 	}
 	
+	//Métodos get e set bebidas
+		public String getNomeBebida() {
+			return nomeBebida;
+		}
+		
+		public void setNomeBebida(String nomeBebida) {
+			this.nomeBebida = nomeBebida;
+		}
 	
 }
