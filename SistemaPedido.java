@@ -11,17 +11,16 @@ public class SistemaPedido {
 		
 		setClienteCPF(pedido, ler);
 		
-		setPedido(pedido,ler, null );
+		setPedido(pedido,ler, null,null );
 		
 		Confirmacao(pedido, ler);
-		
-		
+				
 	}
 
 	
 	public static void setCliente(Scanner ler, Pedido pedido) {
 		
-		System.out.print("Qual o nome do Cliente? ");
+		System.out.print("Qual o nome e sobrenome do Cliente? ");
         String nomeCompleto = ler.nextLine();
 
         // Remove espaços adicionais após o primeiro nome
@@ -53,17 +52,32 @@ public class SistemaPedido {
     	System.out.println("");
     	System.out.println("Digite o CPF...");
     	String cpf = ler.nextLine();
-    	pedido.setCpf(cpf);
-    }else if(escolha ==2) {
-    	
+    	    	
+    	 // Formatação do CPF
+        String cpfFormatado = formatarCPF(cpf);
+        pedido.setCpf(cpfFormatado);
+        
+    	}else if(escolha ==2) {
     }
+  
 }
 		
 	
-	public  static void setPedido(Pedido pedido, Scanner ler, String [] Pedido) {
+	private static String formatarCPF(String cpf) {
+		
+        // Remove qualquer caractere não numérico
+        cpf = cpf.replaceAll("[^0-9]", "");
+
+        // Adiciona as pontuações
+        return cpf.replaceAll("(\\d{3})(\\d{3})(\\d{3})(\\d{2})", "$1.$2.$3-$4");
+    }
+	
+	
+	public  static void setPedido(Pedido pedido, Scanner ler, String [] Pedido, String [] bebida) {
 			String[] Pedidos  = {"Hamburguer", "Misto", "Sanduba"};
+			
 			System.out.println("___________________________");
-			System.out.println("Digite o número referente ao produto que o cleinte deseja. ");
+			System.out.println("Digite o número referente ao produto que o cliente deseja. ");
 			
 			for(int i = 0; i <3; i++) {
 				
@@ -84,6 +98,43 @@ public class SistemaPedido {
 			}
 			
 			
+			//Escolha bebida
+		
+			escolha = 0;
+			System.out.println("Cliente deseja bebida? Digite 1 para (Sim) e 2 para (Não)");
+			escolha = ler.nextByte();
+			ler.nextLine();
+			
+			String[] bebidas = {"Refrigerante", "Suco", "Refresco"};
+			
+			System.out.println("___________________________");
+			if(escolha == 1) {
+					//Caso escolha 1 iremos informa as bebidas e cliente escolhe
+					for(int i = 0; i <3; i++) {	
+						System.out.println("["+ i +"]" + bebidas[i]);
+					}				
+			}else if(escolha == 2) {
+				
+			}
+				
+			escolha = 0;
+			//Escolha bebidas
+			System.out.println("Escolha a bebida referente ao número ao lado da mesma.");
+			escolha = ler.nextByte();
+			ler.nextLine();
+			
+			if(escolha ==  0 ) {
+				pedido.setNomeBebida("Refrigerante");
+			} else if(escolha ==  1) {
+				pedido.setNomeBebida("Suco");
+			}else if(escolha ==  2) {
+				pedido.setNomeBebida("Refresco");
+			}else {
+				System.err.println("Escolha invalida renicie o código.");
+			}
+		
+			
+			
 	}
 	
 	public static void Confirmacao(Pedido pedido, Scanner ler ) {
@@ -93,6 +144,7 @@ public class SistemaPedido {
 		System.out.println("Nome:"+pedido.getNomeCompleto());
 		System.out.println("CPF:"+pedido.getCpf());
 		System.out.println("Pedido:"+pedido.getNomePedido());
+		System.out.println("Bebidas:"+pedido.getNomeBebida());
 		System.out.println("Pedido Conferi? Digite 1 para (Sim) e 2 para (Não)");
 		byte pedidoValidar1 = ler.nextByte();
 		
@@ -113,7 +165,7 @@ public class SistemaPedido {
 						setCliente(ler, pedido);
 						Confirmacao(pedido, ler);
 					}else if(validador == 2 ) {
-						setPedido(pedido, ler, null);
+						setPedido(pedido, ler, null, null);
 						Confirmacao(pedido, ler);
 					}else {
 						System.err.println("Opção invalida, escolha uma opção valida!");
