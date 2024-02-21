@@ -60,39 +60,5 @@ public class Pedido {
 		this.nomePedido = nomePedido;
 	}
 	
-	//Métodos get e set quantidade
-	public byte getQuantidade() {
-		return quantidade;
-	}
-	public void setQuantidade(byte quantidade) {
-		this.quantidade = quantidade;
-	}
 	
-	//Métodos get e set subtotal
-	
-	public Double getSubtotal() {
-		return subtotal;
-	}
-	
-	public void setSubtotal(Double subtotal) {
-		this.subtotal = subtotal;
-	}
-	
-	//Métodos get e set desconto
-	public Double getDesconto() {
-		return desconto;
-	}
-	
-	public void setDesconto(Double desconto) {
-		this.desconto = 3*total / 10;
-	}
-	
-	
-	//Métodos get e set total
-	public Double getTotal() {
-		return total;
-	}
-	public void setTotal(Double total) {
-		this.total = total;
-	}
 }
