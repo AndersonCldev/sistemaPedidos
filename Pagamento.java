@@ -5,9 +5,9 @@ public class Pagamento {
 	private Byte quantidadePedido; 
 	private Double subtotal;
 	private Double desconto;
-	private Double total = subtotal + desconto; 
-	private Double[] valorProduto = {15.99, 9.97, 13.00};
-	
+	private Double total ; 
+	private Double[] valorBebida = {15.99, 9.97, 13.00};
+	private Double[] valorLanche = {47.99, 20.97, 15.00};
 			
 	//Métodos get e set quantidade
 	public byte getQuantidade() {
@@ -27,15 +27,20 @@ public class Pagamento {
 		this.subtotal = subtotal;
 	}
 	
-	//Métodos get e set desconto
+	// Métodos get e set desconto
 	public Double getDesconto() {
-		return desconto;
+	    return desconto;
 	}
-	
+
 	public void setDesconto(Double desconto) {
-		this.desconto = 3*total / 10;
+	    // Verifica se 'total' foi inicializado antes de calcular o desconto
+	    if (total != null) {
+	        this.desconto = 3 * total / 10;
+	    } else {
+	        // Caso 'total' não tenha sido inicializado, imprime uma mensagem de erro
+	        System.err.println("Erro: Total não foi inicializado. Não foi possível calcular o desconto.");
+	    }
 	}
-	
 	
 	//Métodos get e set total
 	public Double getTotal() {
@@ -47,15 +52,23 @@ public class Pagamento {
 	
 	
 	//Métodos get e set valorProduto
-	public Double[] getValorProduto() {
-		return valorProduto;
+	public Double[] getValorBebida() {
+		return valorBebida;
 	}
 	
-	public void setValorProduto( Double[] valorProduto) {
-		this.valorProduto = valorProduto;
+	public void setValorBebida( Double[] valorBebida) {
+		this.valorBebida = valorBebida;
 	}
 	
+	//Métodos get e set valorLanche
+	public Double[] getValorLanche() {
+		return valorLanche;
+	}
 	
+	public void setValorLanche( Double[] valorLanche) {
+		this.valorLanche = valorLanche;
+	}
+
 	
 }
 	
