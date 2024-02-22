@@ -5,7 +5,9 @@ public class SistemaPedido {
 	
 	public static void main(String[] args) {
 		Pedido pedido = new Pedido();
+		Pagamento pagamento = new Pagamento();
 		Scanner ler = new Scanner(System.in);
+		
 		
 		setCliente(ler, pedido);
 		
@@ -14,6 +16,7 @@ public class SistemaPedido {
 		setPedido(pedido,ler, null,null );
 		
 		Confirmacao(pedido, ler);
+		
 				
 	}
 
@@ -73,105 +76,125 @@ public class SistemaPedido {
     }
 	
 	
-	public  static void setPedido(Pedido pedido, Scanner ler, String [] Pedido, String [] bebida) {
-			String[] Pedidos  = {"Hamburguer", "Misto", "Sanduba"};
-			
-			System.out.println("___________________________");
-			System.out.println("Digite o número referente ao produto que o cliente deseja. ");
-			
-			for(int i = 0; i <3; i++) {
-				
-				System.out.println("["+ i +"]" +Pedidos[i]);
-			}
-			System.out.println(" ");
-			Byte escolha = ler.nextByte();
-			
-			//Escolha do pedido e atribuição ao objeto pedido na variavel nomePedido
-			if(escolha ==  0 ) {
-				pedido.setNomePedido("Hamburguer");
-			} else if(escolha ==  1) {
-				pedido.setNomePedido("Misto");
-			}else if(escolha ==  2) {
-				pedido.setNomePedido("Sanduba");
-			}else {
-				System.err.println("Escolha invalida renicie o código.");
-			}
-			
-			
-			//Escolha bebida
-		
-			escolha = 0;
-			System.out.println("Cliente deseja bebida? Digite 1 para (Sim) e 2 para (Não)");
-			escolha = ler.nextByte();
-			ler.nextLine();
-			
-			String[] bebidas = {"Refrigerante", "Suco", "Refresco"};
-			
-			System.out.println("___________________________");
-			if(escolha == 1) {
-					//Caso escolha 1 iremos informa as bebidas e cliente escolhe
-					for(int i = 0; i <3; i++) {	
-						System.out.println("["+ i +"]" + bebidas[i]);
-					}				
-			}else if(escolha == 2) {
-				
-			}
-				
-			escolha = 0;
-			//Escolha bebidas
-			System.out.println("Escolha a bebida referente ao número ao lado da mesma.");
-			escolha = ler.nextByte();
-			ler.nextLine();
-			
-			if(escolha ==  0 ) {
-				pedido.setNomeBebida("Refrigerante");
-			} else if(escolha ==  1) {
-				pedido.setNomeBebida("Suco");
-			}else if(escolha ==  2) {
-				pedido.setNomeBebida("Refresco");
-			}else {
-				System.err.println("Escolha invalida renicie o código.");
-			}
-		
-			
-			
+	public static void setPedido(Pedido pedido, Scanner ler, String[] Pedido, String[] bebida) {
+	    String[] Pedidos = {"Hamburguer", "Misto", "Sanduba"};
+
+	    System.out.println("___________________________");
+	    System.out.println("Digite o número referente ao produto que o cliente deseja. ");
+
+	    for (int i = 0; i < 3; i++) {
+	        System.out.println("[" + i + "]" + Pedidos[i]);
+	    }
+	    System.out.println(" ");
+	    Byte escolha = ler.nextByte();
+
+	    // Escolha do pedido e atribuição ao objeto pedido na variável nomePedido
+	    if (escolha == 0) {
+	        pedido.setNomePedido("Hamburguer");
+	    } else if (escolha == 1) {
+	        pedido.setNomePedido("Misto");
+	    } else if (escolha == 2) {
+	        pedido.setNomePedido("Sanduba");
+	    } else {
+	        System.err.println("Escolha inválida, reinicie o código.");
+	        return;  // Sai do método se a escolha for inválida
+	    }
+
+	    // Cliente deseja bebida?
+	    System.out.println("Cliente deseja bebida? Digite 1 para (Sim) e 2 para (Não)");
+	    escolha = ler.nextByte();
+	    ler.nextLine();  // Limpa o buffer do teclado
+
+	    if (escolha == 1) {
+	        // Caso escolha 1, informamos as bebidas e o cliente escolhe
+	        String[] bebidas = {"Refrigerante", "Suco", "Refresco"};
+	        System.out.println("___________________________");
+	        for (int i = 0; i < 3; i++) {
+	            System.out.println("[" + i + "]" + bebidas[i]);
+	        }
+
+	        // Escolha bebidas
+	        System.out.println("Escolha a bebida referente ao número ao lado da mesma.");
+	        escolha = ler.nextByte();
+	        ler.nextLine();
+
+	        if (escolha == 0) {
+	            pedido.setNomeBebida("Refrigerante");
+	        } else if (escolha == 1) {
+	            pedido.setNomeBebida("Suco");
+	        } else if (escolha == 2) {
+	            pedido.setNomeBebida("Refresco");
+	        } else {
+	            System.err.println("Escolha inválida, reinicie o código.");
+	            return;  // Sai do método se a escolha for inválida
+	        }
+	    } else if (escolha == 2) {
+	          
+	        System.out.println("Cliente não deseja bebida.");
+	    } else {
+	        System.err.println("Escolha inválida, reinicie o código.");
+	        return;  // Sai do método se a escolha for inválida
+	    }
 	}
+
 	
-	public static void Confirmacao(Pedido pedido, Scanner ler ) {
-		
-		System.out.println("___________________________");
-		System.err.println("Atenção!");
-		System.out.println("Nome:"+pedido.getNomeCompleto());
-		System.out.println("CPF:"+pedido.getCpf());
-		System.out.println("Pedido:"+pedido.getNomePedido());
-		System.out.println("Bebidas:"+pedido.getNomeBebida());
-		System.out.println("Pedido Conferi? Digite 1 para (Sim) e 2 para (Não)");
-		byte pedidoValidar1 = ler.nextByte();
-		
-		//Valida se pedido esta correto
-		if(pedidoValidar1 == 1 ) {
-			
-			}else if(pedidoValidar1 == 2 ){
-				
-			System.err.println("Atenção!");
-			System.out.println("Qual o erro? CPF[0], NOME[1] ou PEDIDO[2] ");
-			byte validador = ler.nextByte();
-			ler.nextLine();
-			
-				if(validador == 0) {
-					setClienteCPF(pedido,ler);
-					Confirmacao(pedido, ler);
-					}else if(validador == 1) {
-						setCliente(ler, pedido);
-						Confirmacao(pedido, ler);
-					}else if(validador == 2 ) {
-						setPedido(pedido, ler, null, null);
-						Confirmacao(pedido, ler);
-					}else {
-						System.err.println("Opção invalida, escolha uma opção valida!");
-						Confirmacao(pedido, ler);
-					}
-			}
-		}
+	public static void Confirmacao(Pedido pedido, Scanner ler) {
+	    System.out.println("___________________________");
+	    System.err.println("Atenção!");
+	    System.out.println("Nome:" + pedido.getNomeCompleto());
+	    System.out.println("CPF:" + pedido.getCpf());
+	    System.out.println("Pedido:" + pedido.getNomePedido());
+	    System.out.println("Bebidas:" + pedido.getNomeBebida());
+	    System.out.println("Pedido Confere? Digite 1 para (Sim) e 2 para (Não)");
+	    byte pedidoValidar1 = ler.nextByte();
+
+	    // Valida se o pedido está correto
+	    if (pedidoValidar1 == 1) {
+	        // Pedido correto, nada mais a fazer
+	    } else if (pedidoValidar1 == 2) {
+	        System.err.println("Atenção!");
+	        System.out.println("Qual o erro? CPF[0], NOME[1] ou PEDIDO[2] ");
+	        byte validador = ler.nextByte();
+	        ler.nextLine();
+
+	        // Validar se a opção é 0, 1 ou 2
+	        while (validador < 0 || validador > 2) {
+	            System.err.println("Opção inválida, escolha uma opção válida!");
+	            System.out.println("Qual o erro? CPF[0], NOME[1] ou PEDIDO[2] ");
+	            validador = ler.nextByte();
+	            ler.nextLine();
+	        }
+
+	        // Corrigir a informação incorreta
+	        if (validador == 0) {
+	            setClienteCPF(pedido, ler);
+	            System.out.println("Digite o CPF...");
+	            pedido.setCpf(ler.nextLine());
+	        } else if (validador == 1) {
+	            setCliente(ler, pedido);
+	        } else if (validador == 2) {
+	            setPedido(pedido, ler, null, null);
+	            System.out.println("Escolha a bebida referente ao número ao lado da mesma.");
+	        }
+	    } else {
+	        System.err.println("Opção inválida, escolha uma opção válida!");
+	        Confirmacao(pedido, ler);
+	    }
+	}
+
 	
+	public static void setValorPedido(Pedido pedido, Pagamento pagamento, Scanner ler, String[] Pedidos) {
+	    System.out.println("___________________________");
+	    System.err.print("Atenção!");
+
+	    Double[] valorLanche = pagamento.getValorLanche();
+	    Double[] valorBebida = pagamento.getValorBebida();
+
+	    for (int i = 0; i < Pedidos.length; i++) {
+	        System.out.println("[" + Pedidos[i] + "]" +
+	                           " Lanche: R$" + valorLanche[i] +
+	                           " Bebida: R$" + valorBebida[i]);
+	    }
+	}
+
 }	
