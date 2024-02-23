@@ -17,6 +17,7 @@ public class SistemaPedido {
 		
 		Confirmacao(pedido, ler);
 		
+		setValorPedido(pedido, pagamento, ler, args);
 				
 	}
 
@@ -183,18 +184,53 @@ public class SistemaPedido {
 	}
 
 	
-	public static void setValorPedido(Pedido pedido, Pagamento pagamento, Scanner ler, String[] Pedidos) {
-	    System.out.println("___________________________");
-	    System.err.print("Atenção!");
-
-	    Double[] valorLanche = pagamento.getValorLanche();
-	    Double[] valorBebida = pagamento.getValorBebida();
-
-	    for (int i = 0; i < Pedidos.length; i++) {
-	        System.out.println("[" + Pedidos[i] + "]" +
-	                           " Lanche: R$" + valorLanche[i] +
-	                           " Bebida: R$" + valorBebida[i]);
+	public static void setValorPedido(Pedido pedido, Pagamento pagamento, Scanner ler, String[] bebidas) {
+	    System.out.println("______________________________________________");
+	    System.err.print("     			Subtotal     ");																	
+	    System.out.println(" ");
+	    
+	    Double valorPedido,valorBebida ;
+	    	    
+	    if(pedido.getNomePedido().equals("Hamburguer")) {
+	    	valorPedido = pagamento.getValorLanche()[0];
+	    }else if(pedido.getNomePedido().equals("Misto")) {
+	    	valorPedido = pagamento.getValorLanche()[1];
+	    }else if(pedido.getNomePedido().equals("Sanduba")) {
+	    	valorPedido = pagamento.getValorLanche()[2];
+	    } else {
+	    	System.err.println("ERRO!");
+	    	System.err.println("ERRO!");
+	    	System.err.println("ERRO!");
+	    	System.err.println("ERRO!");
+	    	System.err.println("Reinicie o Sistema");
+	    	return;
 	    }
+	    
+	    
+	    // Verifica a escolga do cliente e atribui o valor da bebida a variavel valorBebida
+	    if(pedido.getNomeBebida().equals("Refrigerante") ) {
+	    	valorBebida = pagamento.getValorBebida()[0];
+	    }else if(pedido.getNomeBebida().equals("Suco")) {
+	    	valorBebida = pagamento.getValorBebida()[1];
+	    }else if(pedido.getNomeBebida().equals("Refresco")) {
+	    	valorBebida = pagamento.getValorBebida()[2];
+	    } else {
+	    	System.err.println("ERRO!");
+	    	System.err.println("ERRO!");
+	    	System.err.println("ERRO!");
+	    	System.err.println("ERRO!");
+	    	System.err.println("Reinicie o Sistema");
+	    	return;
+	    }
+	    
+	    
+	    
+	    
+	    
+	     System.out.println("          " + pedido.getNomeBebida()+" R$ " + valorBebida
+	     				+	"   |   " + pedido.getNomePedido() + " R$ " + valorPedido
+	    		 );
+	    
 	}
 
 }	
