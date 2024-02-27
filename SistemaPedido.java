@@ -17,7 +17,7 @@ public class SistemaPedido {
 		
 		Confirmacao(pedido, ler);
 		
-		setValorPedido(pedido, pagamento, ler, args);
+		setValorPedido(pedido, pagamento, ler, args,ler);
 				
 	}
 
@@ -184,9 +184,9 @@ public class SistemaPedido {
 	}
 
 	
-	public static void setValorPedido(Pedido pedido, Pagamento pagamento, Scanner ler, String[] bebidas) {
-	    System.out.println("______________________________________________");
-	    System.err.print("     			Subtotal     ");																	
+	public static void setValorPedido(Pedido pedido, Pagamento pagamento, Scanner ler, String[] bebidas, Scanner ler1) {
+	    System.out.println("_____________________________________________________");
+	    System.err.print("     		    Subtotal     ");																	
 	    System.out.println(" ");
 	    
 	    Double valorPedido,valorBebida ;
@@ -227,10 +227,19 @@ public class SistemaPedido {
 	    
 	    
 	    
-	     System.out.println("          " + pedido.getNomeBebida()+" R$ " + valorBebida
+	     System.out.println("      " + pedido.getNomeBebida()+" R$ " + valorBebida
 	     				+	"   |   " + pedido.getNomePedido() + " R$ " + valorPedido
 	    		 );
-	    
+	     System.out.println("Confirmar pedido digite (1)");
+	     Byte escolha1 = ler1.nextByte();
+	     ler.nextLine();
+	     
+	     if(escolha1.equals(1)) {
+	    	 System.out.println("Pedido encaminhado para preparação favor fique atento será informado nome e sobrenome no telão após produto estiver pronto.");
+	     }else {
+	    	 System.err.println("Reinicie o sistema");
+	    	 return;
+	     }
 	}
 
 }	
