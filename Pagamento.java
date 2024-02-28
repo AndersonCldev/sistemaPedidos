@@ -8,6 +8,8 @@ public class Pagamento {
 	private Double total ; 
 	private Double[] valorBebida = {15.99, 9.97, 13.00};
 	private Double[] valorLanche = {47.99, 20.97, 15.00};
+
+private Spring token;
 			
 	//Métodos get e set quantidade
 	public byte getQuantidade() {
@@ -69,7 +71,14 @@ public class Pagamento {
 		this.valorLanche = valorLanche;
 	}
 
-	
+		//Métodos get e set token
+	public byte getToken() {
+		return token;
+	}
+	public void setToken() {
+		this.token = token;
+	}
+
 }
 	
 
