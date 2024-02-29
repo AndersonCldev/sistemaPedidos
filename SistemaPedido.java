@@ -18,6 +18,7 @@ public class SistemaPedido {
 		Confirmacao(pedido, ler);
 		
 		setValorPedido(pedido, pagamento, ler, args,ler);
+		pedidoParaViagem (ler);
 				
 	}
 
@@ -240,6 +241,23 @@ public class SistemaPedido {
 	    	 System.err.println("Reinicie o sistema");
 	    	 return;
 	     }
+	     
+	     
+	     
+	}
+	
+	public static void pedidoParaViagem(Scanner ler) {
+	    System.out.println("O pedido é para viagem? (SIM ou NÃO)");
+	    String confirmacao = ler.nextLine();
+
+	    if (confirmacao.equalsIgnoreCase("SIM")) {
+	        System.out.println("Pedido para viagem. Aguarde a preparação e retire no balcão.");
+	    } else if (confirmacao.equalsIgnoreCase("NÃO")) {
+	        System.out.println("Pedido para consumo no local.");
+	    } else {
+	        System.err.println("Opção inválida. Por favor, responda com SIM ou NÃO.");
+	        // Adicione uma lógica para lidar com a entrada inválida se necessário
+	    }
 	}
 
 }	
