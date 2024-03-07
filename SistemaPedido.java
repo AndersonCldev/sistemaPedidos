@@ -15,7 +15,7 @@ public class SistemaPedido {
 		
 		setPedido(pedido,ler, null,null );
 		
-		Confirmacao(pedido, ler);
+		Confirmacao(pedido, ler, pagamento);
 		
 		setValorPedido(pedido, pagamento, ler, args,ler);
 		pedidoParaViagem (ler);
@@ -140,13 +140,14 @@ public class SistemaPedido {
 	}
 
 	
-	public static void Confirmacao(Pedido pedido, Scanner ler) {
+	public static void Confirmacao(Pedido pedido, Scanner ler, Pagamento pagamento) {
 	    System.out.println("___________________________");
 	    System.err.println("Atenção!");
 	    System.out.println("Nome:" + pedido.getNomeCompleto());
 	    System.out.println("CPF:" + pedido.getCpf());
 	    System.out.println("Pedido:" + pedido.getNomePedido());
 	    System.out.println("Bebidas:" + pedido.getNomeBebida());
+	    System.out.println("Data e Hora da Ação: " + pagamento.getDataHoraAcao());
 	    System.out.println("Pedido Confere? Digite 1 para (Sim) e 2 para (Não)");
 	    byte pedidoValidar1 = ler.nextByte();
 
@@ -180,7 +181,7 @@ public class SistemaPedido {
 	        }
 	    } else {
 	        System.err.println("Opção inválida, escolha uma opção válida!");
-	        Confirmacao(pedido, ler);
+	        Confirmacao(pedido, ler, pagamento);
 	    }
 	}
 
