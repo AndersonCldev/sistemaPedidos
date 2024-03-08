@@ -232,7 +232,9 @@ public class SistemaPedido {
 	     System.out.println("      " + pedido.getNomeBebida()+" R$ " + valorBebida
 	     				+	"   |   " + pedido.getNomePedido() + " R$ " + valorPedido
 	    		 );
-	     System.out.println("Confirmar pedido digite (1)");
+	     System.out.println("_________________________________________________________________");
+	     System.err.print("Atenção!!\n");
+	     System.out.println("Confirmar pedido digite (1) para cancelar Digite qualquer outra coisa: ");
 	     Byte escolha1 = ler1.nextByte();
 	     ler.nextLine();
 	     
@@ -257,6 +259,7 @@ public class SistemaPedido {
 	        System.out.println("Pedido para consumo no local.");
 	    } else {
 	        System.err.println("Opção inválida. Por favor, responda com SIM ou NÃO.");
+	        pedidoParaViagem(ler);
 	        // Adicione uma lógica para lidar com a entrada inválida se necessário
 	    }
 	}
