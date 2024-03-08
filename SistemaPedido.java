@@ -141,40 +141,43 @@ public class SistemaPedido {
 
 	
 	public static void Confirmacao(Pedido pedido, Scanner ler, Pagamento pagamento) {
-	    System.out.println("___________________________");
-	    System.err.println("Atenção!");
-	    System.out.println("Nome:" + pedido.getNomeCompleto());
-	    System.out.println("CPF:" + pedido.getCpf());
-	    System.out.println("Pedido:" + pedido.getNomePedido());
-	    System.out.println("Bebidas:" + pedido.getNomeBebida());
-	    System.out.println("Data e Hora da Ação: " + pagamento.getDataHoraAcao());
-	    System.out.println("Pedido Confere? Digite 1 para (Sim) e 2 para (Não)");
-	    byte pedidoValidar1 = ler.nextByte();
+		 System.out.println("___________________________");
+		    System.err.println("Atenção!");
+		    System.out.println("Nome:" + pedido.getNomeCompleto());
+		    System.out.println("CPF:" + pedido.getCpf());
+
+		    // Verifica se o pedido possui bebida antes de chamar getNomeBebida()
+		    if (pedido.getNomeBebida() != null) {
+		        System.out.println("Bebidas:" + pedido.getNomeBebida());
+		    } else {
+		        System.out.println("Pedido sem bebida.");
+		    }
+
+		    System.out.println("Data e Hora da Ação: " + pagamento.getDataHoraAcao());
+		    System.out.println("Pedido Confere? Digite 1 para (Sim) e 2 para (Não)");
+		    byte pedidoValidar1 = ler.nextByte();
+
 
 	    // Valida se o pedido está correto
 	    if (pedidoValidar1 == 1) {
 	        // Pedido correto, nada mais a fazer
 	    } else if (pedidoValidar1 == 2) {
 	        System.err.println("Atenção!");
-	        System.out.println("Qual o erro? CPF[0], NOME[1] ou PEDIDO[2] ");
+	        System.out.println("Qual o erro?  NOME[1] ou PEDIDO[2] ");
 	        byte validador = ler.nextByte();
 	        ler.nextLine();
 
 	        // Validar se a opção é 0, 1 ou 2
 	        while (validador < 0 || validador > 2) {
 	            System.err.println("Opção inválida, escolha uma opção válida!");
-	            System.out.println("Qual o erro? CPF[0], NOME[1] ou PEDIDO[2] ");
+	            System.out.println("Qual o erro? NOME[1] ou PEDIDO[2] ");
 	            validador = ler.nextByte();
 	            ler.nextLine();
 	        }
 
 	        // Corrigir a informação incorreta
-	        if (validador == 0) {
-	            setClienteCPF(pedido, ler);
-	            System.out.println("Digite o CPF...");
-	            pedido.setCpf(ler.nextLine());
-	        } else if (validador == 1) {
-	            setCliente(ler, pedido);
+	        if (validador == 1) {
+	        	 setCliente(ler, pedido);         
 	        } else if (validador == 2) {
 	            setPedido(pedido, ler, null, null);
 	            System.out.println("Escolha a bebida referente ao número ao lado da mesma.");
@@ -241,7 +244,7 @@ public class SistemaPedido {
 	     if(escolha1.equals(1)) {
 	    	 System.out.println("Pedido encaminhado para preparação favor fique atento será informado nome e sobrenome no telão após produto estiver pronto.");
 	     }else {
-	    	 System.err.println("Reinicie o sistema");
+	    	 System.out.println("Reinicie o sistema");
 	    	 return;
 	     }
 	     
