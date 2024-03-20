@@ -18,7 +18,7 @@ public class SistemaPedido {
 		Confirmacao(pedido, ler, pagamento);
 		
 		setValorPedido(pedido, pagamento, ler, args,ler);
-		pedidoParaViagem (ler);
+		pedidoParaViagem (ler, pedido);
 				
 	}
 
@@ -190,8 +190,9 @@ public class SistemaPedido {
 
 	
 	public static void setValorPedido(Pedido pedido, Pagamento pagamento, Scanner ler, String[] bebidas, Scanner ler1) {
-	    System.out.println("_____________________________________________________");
-	    System.err.print("     		    Subtotal     ");																	
+	    System.out.println("__________________________________________________");
+	    System.out.println();
+	    System.out.print("     		    Subtotal     ");																	
 	    System.out.println(" ");
 	    
 	    Double valorPedido,valorBebida ;
@@ -235,15 +236,19 @@ public class SistemaPedido {
 	     System.out.println("      " + pedido.getNomeBebida()+" R$ " + valorBebida
 	     				+	"   |   " + pedido.getNomePedido() + " R$ " + valorPedido
 	    		 );
-	     System.out.println("_________________________________________________________________");
-	     System.err.print("Atenção!!\n");
-	     System.out.println("Confirmar pedido digite (1) para cancelar Digite qualquer outra coisa: ");
-	     Byte escolha1 = ler1.nextByte();
-	     ler.nextLine();
 	     
-	     if(escolha1.equals(1)) {
+	     pagamento.setTotal(valorPedido + valorBebida);
+	     
+	     System.out.println("	TOTAL: "  +  pagamento.getTotal());
+	     System.out.println("_________________________________________________________________");
+	     System.err.print("Atenção!");
+	     System.out.println("Confirmar pedido digite (1) para cancelar Digite qualquer outra coisa: ");
+	     int escolha1 = ler1.nextInt();
+	     
+	     
+	     if(escolha1 == 1) {
 	    	 System.out.println("Pedido encaminhado para preparação favor fique atento será informado nome e sobrenome no telão após produto estiver pronto.");
-	     }else {
+	     }else if(escolha1 != 1    ){
 	    	 System.out.println("Reinicie o sistema");
 	    	 return;
 	     }
@@ -252,18 +257,21 @@ public class SistemaPedido {
 	     
 	}
 	
-	public static void pedidoParaViagem(Scanner ler) {
+	public static void pedidoParaViagem(Scanner ler, Pedido pedido) {
 	    System.out.println("O pedido é para viagem? (SIM ou NÃO)");
 	    String confirmacao = ler.nextLine();
 
 	    if (confirmacao.equalsIgnoreCase("SIM")) {
+	    	pedido.setPedidoViagem(confirmacao);
 	        System.out.println("Pedido para viagem. Aguarde a preparação e retire no balcão.");
 	    } else if (confirmacao.equalsIgnoreCase("NÃO")) {
+	    	pedido.setPedidoViagem(confirmacao);
 	        System.out.println("Pedido para consumo no local.");
-	    } else {
+	    } else if(confirmacao.equalsIgnoreCase("")){
+	    	pedido.setPedidoViagem(confirmacao);
 	        System.err.println("Opção inválida. Por favor, responda com SIM ou NÃO.");
-	        pedidoParaViagem(ler);
-	        // Adicione uma lógica para lidar com a entrada inválida se necessário
+	        pedidoParaViagem(ler, pedido);
+	       // Adicione uma lógica para lidar com a entrada inválida se necessário
 	    }
 	}
 
