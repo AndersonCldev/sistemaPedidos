@@ -7,8 +7,8 @@ public class Pedido {
 	private String nomeCompleto;
 	private String cpf;
 	private String nomePedido;
-	public String nomeBebida;
-	public String pedidoViagem;
+	private String nomeBebida;
+	private int pedidoViagem;
 	
 	
 	//Métodos get e set nomeCliente
@@ -67,11 +67,11 @@ public class Pedido {
 		}
 	
 		//Métodos get e set pedidoViagem
-		public String getPedidoViagem() {
+		public int getPedidoViagem() {
 			return pedidoViagem;
 		}
 		
-		public void setPedidoViagem(String pedidoViagem) {
+		public void setPedidoViagem(int pedidoViagem) {
 			this.pedidoViagem = pedidoViagem;
 			}
 }
