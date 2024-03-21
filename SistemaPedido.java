@@ -113,7 +113,7 @@ public class SistemaPedido {
 	        String[] bebidas = {"Refrigerante", "Suco", "Refresco"};
 	        System.out.println("___________________________");
 	        for (int i = 0; i < 3; i++) {
-	            System.out.println("[" + i + "]" + bebidas[i]);
+	            System.out.println("[" + i + "]" + bebidas[i] + "	Valor:R$"+pagamento.getValorBebida()[i]);
 	        }
 
 	        // Escolha bebidas
