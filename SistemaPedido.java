@@ -13,7 +13,7 @@ public class SistemaPedido {
 		
 		setClienteCPF(pedido, ler);
 		
-		setPedido(pedido,ler, null,null );
+		setPedido(pedido,ler, null,null,pagamento );
 		
 		Confirmacao(pedido, ler, pagamento);
 		
@@ -78,15 +78,16 @@ public class SistemaPedido {
     }
 	
 	
-	public static void setPedido(Pedido pedido, Scanner ler, String[] Pedido, String[] bebida) {
+	public static void setPedido(Pedido pedido, Scanner ler, String[] Pedido, String[] bebida, Pagamento pagamento) {
 	    String[] Pedidos = {"Hamburguer", "Misto", "Sanduba"};
 
 	    System.out.println("___________________________");
 	    System.out.println("Digite o número referente ao produto que o cliente deseja. ");
 
 	    for (int i = 0; i < 3; i++) {
-	        System.out.println("[" + i + "]" + Pedidos[i]);
+	        System.out.println("[" + i + "]" + Pedidos[i] + "	Valor:R$"+pagamento.getValorLanche()[i]);
 	    }
+	    
 	    System.out.println(" ");
 	    Byte escolha = ler.nextByte();
 
@@ -149,8 +150,15 @@ public class SistemaPedido {
 		    // Verifica se o pedido possui bebida antes de chamar getNomeBebida()
 		    if (pedido.getNomeBebida() != null) {
 		        System.out.println("Bebidas:" + pedido.getNomeBebida());
-		    } else {
+		    }else {
 		        System.out.println("Pedido sem bebida.");
+		    }
+		    
+		    
+		    if(pedido.getNomePedido() != null) {
+		        System.out.println("Lanche:" + pedido.getNomePedido());
+		    } else {
+		        System.out.println("Pedido sem lanche.");
 		    }
 
 		    System.out.println("Data e Hora da Ação: " + pagamento.getDataHoraAcao());
@@ -179,7 +187,7 @@ public class SistemaPedido {
 	        if (validador == 1) {
 	        	 setCliente(ler, pedido);         
 	        } else if (validador == 2) {
-	            setPedido(pedido, ler, null, null);
+	            setPedido(pedido, ler, null, null,pagamento);
 	            System.out.println("Escolha a bebida referente ao número ao lado da mesma.");
 	        }
 	    } else {
@@ -233,8 +241,8 @@ public class SistemaPedido {
 	    
 	    
 	    
-	     System.out.println("      " + pedido.getNomeBebida()+" R$ " + valorBebida
-	     				+	"   |   " + pedido.getNomePedido() + " R$ " + valorPedido
+	     System.out.println("	" + pedido.getNomeBebida()+": R$ " + valorBebida
+	     				+	"   |   " + pedido.getNomePedido() + ": R$ " + valorPedido
 	    		 );
 	     
 	     pagamento.setTotal(valorPedido + valorBebida);
@@ -259,7 +267,9 @@ public class SistemaPedido {
 	
 	public static void pedidoParaViagem(Scanner ler, Pedido pedido) {
 	    System.out.println("O pedido é para viagem? (SIM ou NÃO)");
-	    String confirmacao = ler.nextLine();
+	    String confirmacao ;
+	    confirmacao = ler.nextLine();
+	    
 
 	    if (confirmacao.equalsIgnoreCase("SIM")) {
 	    	pedido.setPedidoViagem(confirmacao);
@@ -267,11 +277,11 @@ public class SistemaPedido {
 	    } else if (confirmacao.equalsIgnoreCase("NÃO")) {
 	    	pedido.setPedidoViagem(confirmacao);
 	        System.out.println("Pedido para consumo no local.");
-	    } else if(confirmacao.equalsIgnoreCase("")){
+	    } else if(confirmacao.equalsIgnoreCase(null)){
 	    	pedido.setPedidoViagem(confirmacao);
-	        System.err.println("Opção inválida. Por favor, responda com SIM ou NÃO.");
+	        System.out.println("Opção inválida. Por favor, responda com SIM ou NÃO.");
 	        pedidoParaViagem(ler, pedido);
-	       // Adicione uma lógica para lidar com a entrada inválida se necessário
+	       // devo adicionar uma lógica para lidar com a entrada inválida se necessário
 	    }
 	}
 
